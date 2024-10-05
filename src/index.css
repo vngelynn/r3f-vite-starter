@@ -10,3 +10,13 @@
 body {
   margin: 0;
 }
+
+/* Add this to your CSS file */
+.arrow {
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
+}
+
+.arrow-container {
+  transform: translateY(-2px); /* Adjust as necessary for spacing */
+}

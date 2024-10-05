@@ -5,12 +5,14 @@ Command: npx gltfjsx@6.5.2 public/models/computerdesklargerglb.glb
 
 import React from "react"
 import { useGLTF } from "@react-three/drei"
+import { motion } from "framer-motion-3d"
 
 export function ComputerDeskLarger(props) {
+  const { section } = props
   const { nodes, materials } = useGLTF("models/computerdesklargerglb.glb")
   return (
     <group {...props} dispose={null}>
-      <group scale={1.071}>
+      <group scale={section === 0 ? 1.071 : 0}>
         <group
           position={[2.176, 1.255, -0.224]}
           rotation={[-Math.PI / 2, 0, 1.37]}
@@ -461,5 +463,4 @@ export function ComputerDeskLarger(props) {
     </group>
   )
 }
-
 useGLTF.preload("models/computerdesklargerglb.glb")
