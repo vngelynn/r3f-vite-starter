@@ -40,12 +40,14 @@ export const Experience = (props) => {
     state.camera.lookAt(cameraLookAtX.get(), 0, 0)
   })
 
-  const { animation } = useControls({
-    animation: {
-      value: "Typing",
-      options: ["Typing", "Falling", "Standing"],
-    },
-  })
+  // const { animation } = useControls({
+  //   animation: {
+  //     value: "Typing",
+  //     options: ["Typing", "Falling", "Standing"],
+  //   },
+  // })
+
+  console.log("section: ", section)
 
   return (
     <>
@@ -66,24 +68,24 @@ export const Experience = (props) => {
           resolution={256}
           color='#000000'
         />
-        {/* <Avatar
-          animation={animation}
+        <Avatar
+          animation={section === 1 ? "Standing" : "Typing"}
           position={[0.88, 0.076, -0.802]} // Match the chair's position
           rotation={[-Math.PI / 2, Math.PI / 2, 1.643]}
           scale={1.6}
-        /> */}
+        />
 
         {/* <ambientLight intensity={2} /> */}
 
         {/* <ComputerDesk scale={0.7} /> */}
         <ComputerDeskLarger scale={1} section={section} />
 
-        {animation === "Typing" && (
+        {/* {animation === "Typing" && (
           <mesh scale={[0.8, 0.5, 0.8]} position-y={0.25}>
             <boxGeometry />
             <meshStandardMaterial color='white' />
           </mesh>
-        )}
+        )} */}
 
         <mesh scale={5} rotation-x={-Math.PI * 0.5} position-y={-0.001}>
           <planeGeometry />
@@ -100,12 +102,12 @@ export const Experience = (props) => {
         }}
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.4} />
-        <Avatar
+        {/* <Avatar
           animation={section === 0 ? "Falling" : "Standing"}
           position={[0.88, 0.076, -0.802]} // Match the chair's position
           rotation={[-Math.PI / 2, Math.PI / 2, 1.643]}
           scale={1.6}
-        />
+        /> */}
         <Float>
           <mesh position={[1, -3, -15]} scale={[2, 2, 2]}>
             <sphereGeometry />
