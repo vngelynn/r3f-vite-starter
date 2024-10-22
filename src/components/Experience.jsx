@@ -16,6 +16,8 @@ import { framerMotionConfig } from "../framerConfig"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from "three"
 import { useScroll } from "@react-three/drei"
+import { Projects } from "./Projects"
+import { Background } from "./Background"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -73,6 +75,7 @@ export const Experience = (props) => {
 
   return (
     <>
+      <Background />
       <motion.group
         position={[0.88, 0.076, -0.802]}
         rotation={[0.07220367320510354, 1.5707963118937354, 0]}
@@ -202,6 +205,8 @@ export const Experience = (props) => {
           </mesh>
         </Float>
       </motion.group>
+
+      <Projects />
     </>
   )
 }

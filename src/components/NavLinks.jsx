@@ -23,10 +23,11 @@ const Section = (props) => {
   )
 }
 
-export const NavLinks = () => {
+export const NavLinks = (props) => {
+  const { setSection } = props
   return (
     <div className='flex flex-col items-center w-screen'>
-      <AboutSection />
+      <AboutSection setSection={setSection} />
       <SkillsSection />
       <Section>
         <h1>Project</h1>
@@ -36,7 +37,8 @@ export const NavLinks = () => {
   )
 }
 
-const AboutSection = () => {
+const AboutSection = (props) => {
+  const { setSection } = props
   return (
     <Section>
       <h1 className='text-6xl font-extrabold leading-snug'>
@@ -77,6 +79,7 @@ const AboutSection = () => {
           duration: 1,
           delay: 2,
         }}
+        onClick={() => setSection(3)}
       >
         Let's Connect
       </motion.button>
@@ -111,12 +114,12 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className='text-5xl font-bold'>Skills</h2>
+        <h2 className='text-5xl font-bold text-white'>Skills</h2>
         <div className=' mt-8 space-y-4'>
           {skills.map((skill, index) => (
             <div className='w-64' key={index}>
               <motion.h3
-                className='text-xl font-bold text-gray-800'
+                className='text-xl font-bold text-white'
                 initial={{
                   opacity: 0,
                 }}
