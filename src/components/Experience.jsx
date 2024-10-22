@@ -4,15 +4,11 @@ import {
   MeshWobbleMaterial,
   Sky,
   ContactShadows,
-  OrbitControls,
   Environment,
 } from "@react-three/drei"
 import { Avatar } from "./Avatar"
-import { BunnyBoy } from "./BunnyBoy"
-import { ComputerDesk } from "./ComputerDesk"
 import { ComputerDeskLarger } from "./ComputerDeskLarger"
 ComputerDeskLarger
-import { useControls } from "leva"
 import { animate, useMotionValue } from "framer-motion"
 import { motion } from "framer-motion-3d"
 import { useFrame, useThree } from "@react-three/fiber"
@@ -42,6 +38,13 @@ export const Experience = (props) => {
 
   const characterContainerAboutRef = useRef()
 
+  const [characterAnimation, setCharacterAnimation] = useState("Typing")
+  useEffect(() => {
+    setCharacterAnimation("Falling")
+    setTimeout(() => {
+      setCharacterAnimation(section === 0 ? "Typing" : "Standing")
+    }, 600)
+  }, [section])
   useFrame((state) => {
     let currSection = Math.floor(data.scroll.current * data.pages)
 
@@ -110,7 +113,7 @@ export const Experience = (props) => {
         }}
       >
         {" "}
-        <Avatar animation={section === 1 ? "Standing" : "Typing"} />
+        <Avatar animation={characterAnimation} />
       </motion.group>
 
       <Sky />
@@ -133,12 +136,6 @@ export const Experience = (props) => {
 
         <ComputerDeskLarger scale={1} section={section} />
 
-        {/* <Avatar
-          animation={section === 1 ? "Standing" : "Typing"}
-          position={[0.88, 0.076, -0.802]} // Match the chair's position
-          rotation={[-Math.PI / 2, Math.PI / 2, 1.643]}
-          scale={1.6}
-        /> */}
         <group
           ref={characterContainerAboutRef}
           name='avatarPosition'
