@@ -1,4 +1,7 @@
 import { motion } from "framer-motion"
+import { useAtom } from "jotai"
+import { currentProjectAtom, projects } from "./Projects"
+
 const Section = (props) => {
   const { children } = props
   return (
@@ -29,9 +32,7 @@ export const NavLinks = (props) => {
     <div className='flex flex-col items-center w-screen'>
       <AboutSection setSection={setSection} />
       <SkillsSection />
-      <Section>
-        <h1>Project</h1>
-      </Section>
+      <ProjectsSection />
       <ContactSection />
     </div>
   )
@@ -41,13 +42,51 @@ const AboutSection = (props) => {
   const { setSection } = props
   return (
     <Section>
-      <h1 className='text-6xl font-extrabold leading-snug'>
-        Hi, My name is
-        <br />
-        <span className='bg-white px-1 italic'>Angelynn</span>
-      </h1>
+      <div className='bg-black text-white p-8'>
+        <style jsx>{`
+          @keyframes slideIn {
+            0% {
+              width: 0;
+              transform: translateX(100%);
+            }
+            100% {
+              width: 100%;
+              transform: translateX(0);
+            }
+          }
+
+          @keyframes pushLeft {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+
+          .sliding-line {
+            animation: slideIn 1.5s ease forwards;
+          }
+
+          .pushing-text {
+            animation: pushLeft 1.5s ease forwards;
+          }
+        `}</style>
+
+        <h1
+          className='text-6xl font-light tracking-wide'
+          style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
+        >
+          Hello, my name is
+          <br />
+          <div className='flex items-center'>
+            <span className='pushing-text whitespace-nowrap'>Angelynn</span>
+            <div className='sliding-line h-0.5 bg-white ml-2 flex-grow'></div>
+          </div>
+        </h1>
+      </div>
       <motion.p
-        className='text-lg text-gray-600 mt-4'
+        className='text-lg text-gray-600 my-4'
         initial={{
           opacity: 0,
           y: 25,
@@ -61,12 +100,11 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I'm a fullstack engineer with a passion for crafting intuitive and
-        engaging user experiences.
+        I'm a fullstack software developer with a passion for crafting intuitive
+        and impactful user experiences.
       </motion.p>
       <motion.button
-        className={`bg-indigo-600 text-white py-4 px-8 
-      rounded-lg font-bold text-lg mt-16`}
+        className='w-1/6 bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
         initial={{
           opacity: 0,
           y: 25,
@@ -81,6 +119,7 @@ const AboutSection = (props) => {
         }}
         onClick={() => setSection(3)}
       >
+        {" "}
         Let's Connect
       </motion.button>
     </Section>
@@ -162,49 +201,100 @@ const SkillsSection = () => {
   )
 }
 
+const ProjectsSection = () => {
+  const [currentProject, setCurrentProject] = useAtom(currentProjectAtom)
+
+  const nextProject = () => {
+    setCurrentProject((currentProject + 1) % projects.length)
+  }
+
+  const previousProject = () => {
+    setCurrentProject((currentProject - 1 + projects.length) % projects.length)
+  }
+
+  return (
+    <Section>
+      <div className='flex w-full h-full gap-8 items-center justify-center'>
+        <button
+          className='hover:text-indigo-600 transition-colors'
+          onClick={previousProject}
+        >
+          ← Previous
+        </button>
+        <h2 className='text-5xl font-bold'>Projects</h2>
+        <button
+          className='hover:text-indigo-600 transition-colors'
+          onClick={nextProject}
+        >
+          Next →
+        </button>
+      </div>
+    </Section>
+  )
+}
+
 const ContactSection = () => {
   return (
     <Section>
-      <h2 className='text-5xl font-bold'>Contact me</h2>
-      <div className='mt-8 p-8 rounded-md bg-white w-96 max-w-full'>
-        <form>
-          <label
-            htmlFor='name'
-            className='font-medium text-gray-900 block mb-1'
-          >
-            Name
-          </label>
-          <input
-            type='text'
-            name='name'
-            id='name'
-            className='block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3'
-          />
-          <label
-            htmlFor='email'
-            className='font-medium text-gray-900 block mb-1 mt-8'
-          >
-            Email
-          </label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            className='block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3'
-          />
-          <label
-            htmlFor='email'
-            className='font-medium text-gray-900 block mb-1 mt-8'
-          >
-            Message
-          </label>
-          <textarea
-            name='message'
-            id='message'
-            className='h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3'
-          />
-          <button className='bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 '>
-            Submit
+      <div className='w-1/3 mx-10 px-4'>
+        <h1
+          className='text-6xl font-light tracking-tight mb-14'
+          style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
+        >
+          Contact
+        </h1>
+
+        <form className='space-y-12 w-full'>
+          <div className='relative w-full'>
+            <input
+              type='text'
+              name='name'
+              id='name'
+              className='peer w-full border-b border-gray-600 py-3 focus:border-black focus:outline-none placeholder-transparent text-gray-900 transition-colors bg-transparent'
+              placeholder='Name'
+            />
+            <label
+              htmlFor='name'
+              className='absolute left-0 -top-3.5 text-sm text-gray-800 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm'
+            >
+              Name
+            </label>
+          </div>
+
+          <div className='relative'>
+            <input
+              type='email'
+              name='email'
+              id='email'
+              className='peer w-full border-b border-gray-600 py-3 focus:border-black focus:outline-none placeholder-transparent text-gray-900 transition-colors bg-transparent'
+              placeholder='Email'
+            />
+            <label
+              htmlFor='email'
+              className='absolute left-0 -top-3.5 text-sm text-gray-800 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm'
+            >
+              Email
+            </label>
+          </div>
+
+          <div className='relative'>
+            <textarea
+              name='message'
+              id='message'
+              rows='4'
+              className='peer w-full border-b border-gray-600 py-3 focus:border-black focus:outline-none placeholder-transparent text-gray-900 transition-colors resize-none bg-transparent'
+              placeholder='Message'
+            />
+            <label
+              htmlFor='message'
+              className='absolute left-0 -top-3.5 text-sm text-gray-800 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm'
+            >
+              Message
+            </label>
+          </div>
+
+          <button className='w-full bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'>
+            Send Message
           </button>
         </form>
       </div>
