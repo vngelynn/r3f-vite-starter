@@ -131,20 +131,18 @@ export default function Burger() {
           techStack='JavaScript, TypeScript, Python'
           shouldAnimate={isInView}
         />
-
-        <BurgerIngredient
-          ingredient='h-3 w-72 -mt-2 bg-gradient-to-r from-yellow-300 to-yellow-400 shadow-md'
-          delay={0.8}
-          techStack='React, Next.js, Redux, MobX'
-          shouldAnimate={isInView}
-        />
-
-        <BurgerIngredient
-          ingredient='h-12 w-72 -mt-1 rounded-lg bg-gradient-to-b from-[#8B4513] to-[#654321] shadow-md'
-          delay={0.6}
-          techStack='Node.js, Express, FastAPI'
-          shouldAnimate={isInView}
-        />
+        <motion.div
+          initial={{ y: -500 }}
+          animate={lettuceControls}
+          className='relative group'
+        >
+          <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-50 z-10'>
+            <p className='text-white text-sm text-center px-4 font-medium'>
+              Webpack, Vite, Docker, Vercel
+            </p>
+          </div>
+          <WavyLettuce />
+        </motion.div>
 
         <motion.div
           initial={{ y: -500 }}
@@ -159,18 +157,19 @@ export default function Burger() {
           <Tomato />
         </motion.div>
 
-        <motion.div
-          initial={{ y: -500 }}
-          animate={lettuceControls}
-          className='relative group'
-        >
-          <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-50 z-10'>
-            <p className='text-white text-sm text-center px-4 font-medium'>
-              Webpack, Vite, Docker, Vercel
-            </p>
-          </div>
-          <WavyLettuce />
-        </motion.div>
+        <BurgerIngredient
+          ingredient='h-3 w-[280px] -mt-2 bg-gradient-to-r from-yellow-300 to-yellow-400 shadow-md rounded-tl-full rounded-tr-full transform skew-x-6'
+          delay={0.8}
+          techStack='React, Next.js, Redux, MobX'
+          shouldAnimate={isInView}
+        />
+
+        <BurgerIngredient
+          ingredient='h-12 w-72 -mt-1 rounded-lg bg-gradient-to-b from-[#8B4513] to-[#654321] shadow-md'
+          delay={0.6}
+          techStack='Node.js, Express, FastAPI'
+          shouldAnimate={isInView}
+        />
 
         <BurgerIngredient
           ingredient='h-12 w-80 -mt-2 rounded-b-full bg-gradient-to-b from-amber-400 to-amber-500 shadow-lg'
