@@ -122,9 +122,9 @@ export default function Burger() {
   return (
     <section
       ref={sectionRef}
-      className='min-h-screen bg-gradient-to-b from-orange-50 to-orange-100 flex items-center justify-center'
+      className='bg-gradient-to-b from-orange-50 to-orange-100 flex items-center justify-center'
     >
-      <div className='relative h-[600px] w-[400px] flex flex-col items-center justify-end'>
+      <div className='relative h-[400px] flex flex-col items-center justify-center mx-8'>
         <BurgerIngredient
           ingredient='h-16 w-80 rounded-t-full bg-gradient-to-b from-amber-200 to-amber-300 shadow-lg'
           delay={1.0}
@@ -177,18 +177,7 @@ export default function Burger() {
           techStack='Jest, Vitest, llm, ai voice'
           shouldAnimate={isInView}
         />
-
-        {/* Plate */}
-        <div className='h-4 w-96 bg-gradient-to-b from-gray-100 to-gray-200 rounded-full mt-8 shadow-xl' />
       </div>
-
-      {/* Reset button */}
-      <button
-        onClick={resetAnimation}
-        className='absolute bottom-8 px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors'
-      >
-        Reset Animation
-      </button>
     </section>
   )
 }
