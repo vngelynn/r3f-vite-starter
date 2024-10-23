@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
 import { currentProjectAtom, projects } from "./Projects"
+import Burger from "./Burger"
 
 const Section = (props) => {
   const { children } = props
@@ -43,7 +44,7 @@ const AboutSection = (props) => {
   return (
     <Section>
       <div className='bg-black text-white p-8'>
-        <style jsx>{`
+        <style jsx='true'>{`
           @keyframes slideIn {
             0% {
               width: 0;
@@ -153,7 +154,13 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <h2 className='text-5xl font-bold text-white'>Skills</h2>
+        <h2
+          className='text-6xl text-white font-light tracking-tight mb-14'
+          style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
+        >
+          Skills
+        </h2>
+        <Burger />
         <div className=' mt-8 space-y-4'>
           {skills.map((skill, index) => (
             <div className='w-64' key={index}>
@@ -237,12 +244,12 @@ const ContactSection = () => {
   return (
     <Section>
       <div className='w-1/3 mx-10 px-4'>
-        <h1
+        <h2
           className='text-6xl font-light tracking-tight mb-14'
           style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
         >
           Contact
-        </h1>
+        </h2>
 
         <form className='space-y-12 w-full'>
           <div className='relative w-full'>
