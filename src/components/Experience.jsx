@@ -1,11 +1,4 @@
-import {
-  Float,
-  MeshDistortMaterial,
-  MeshWobbleMaterial,
-  Sky,
-  ContactShadows,
-  Environment,
-} from "@react-three/drei"
+import { ContactShadows, Environment } from "@react-three/drei"
 import { Avatar as AvatarDeprecated } from "./AvatarDeprecated"
 import { ComputerDeskLarger } from "./ComputerDeskLarger"
 ComputerDeskLarger
@@ -21,9 +14,7 @@ import { Background } from "./Background"
 import { Avatar } from "./Avatar"
 import { Please } from "./Please"
 import { Office } from "../../Office"
-import { EarthFlowers } from "../../EarthFlowers"
-import { Flowers } from "../../Flowers"
-import { FlowerEarth } from "../../FlowerEarth"
+import { Globes } from "./Globes"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -121,29 +112,34 @@ export const Experience = (props) => {
         }}
       >
         {/* <Please animation={characterAnimation} /> */}
-        <AvatarDeprecated animation={characterAnimation} />
+        {/* <AvatarDeprecated animation={characterAnimation} /> */}
       </motion.group>
 
-      <Sky />
       <Environment preset='sunset' />
 
       <motion.group
-        position-y={-1}
         animate={{
           y: section === 0 ? 0 : -1,
         }}
       >
-        <ContactShadows
-          opacity={0.42}
-          scale={10}
-          blur={1}
-          far={10}
-          resolution={256}
-          color='#000000'
-        />
-
         <Office section={section} />
-        {/* <Avatar animation={characterAnimation} /> */}
+        <Avatar animation={characterAnimation} />
+        <group
+          {...props}
+          dispose={null}
+          position={[0, -1, -0.2]}
+          rotation={[0.1, 0, 0]}
+        >
+          <ContactShadows
+            // position={[0, 0, -0.7]}
+            opacity={0.42}
+            scale={10}
+            blur={1}
+            far={10}
+            resolution={256}
+            color='#000000'
+          />
+        </group>
 
         <group
           ref={characterContainerAboutRef}
@@ -152,60 +148,13 @@ export const Experience = (props) => {
           rotation={[-Math.PI / 2, Math.PI / 2, 1.643]}
           scale={1.6}
         ></group>
-
+        {/* 
         <mesh scale={5} rotation-x={-Math.PI * 0.5} position-y={-0.001}>
           <planeGeometry />
           <meshStandardMaterial color='white' />
-        </mesh>
+        </mesh> */}
       </motion.group>
-
-      {/* SKILLS */}
-      <motion.group
-        position={[0, -1.5, -10]}
-        animate={{
-          z: section === 1 ? 0 : -10,
-          y: section === 1 ? -viewport.height : -1.5,
-        }}
-      >
-        <directionalLight position={[-5, 3, 5]} intensity={0.4} />
-        <Float>
-          <mesh position={[1, -3, -15]} scale={[2, 2, 2]}>
-            <EarthFlowers />
-            <MeshDistortMaterial
-              opacity={0.8}
-              transparent
-              distort={0.4}
-              speed={4}
-              color={"red"}
-            />
-          </mesh>
-        </Float>
-        <Float>
-          <mesh scale={[3, 3, 3]} position={[3, 1, -18]}>
-            <FlowerEarth />
-            <MeshDistortMaterial
-              opacity={0.8}
-              transparent
-              distort={1}
-              speed={5}
-              color='yellow'
-            />
-          </mesh>
-        </Float>
-        <Float>
-          <mesh scale={[1.4, 1.4, 1.4]} position={[-3, -1, -11]}>
-            <Flowers />
-            <MeshWobbleMaterial
-              opacity={0.8}
-              transparent
-              factor={1}
-              speed={5}
-              color={"blue"}
-            />
-          </mesh>
-        </Float>
-      </motion.group>
-
+      <Globes />
       <Projects />
     </>
   )
