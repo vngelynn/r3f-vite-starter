@@ -6,7 +6,7 @@ import {
   ContactShadows,
   Environment,
 } from "@react-three/drei"
-import { Avatar } from "./Avatar"
+import { Avatar as AvatarDeprecated } from "./AvatarDeprecated"
 import { ComputerDeskLarger } from "./ComputerDeskLarger"
 ComputerDeskLarger
 import { animate, useMotionValue } from "framer-motion"
@@ -18,6 +18,10 @@ import * as THREE from "three"
 import { useScroll } from "@react-three/drei"
 import { Projects } from "./Projects"
 import { Background } from "./Background"
+import { Avatar } from "./Avatar"
+import { Please } from "./Please"
+import { Office } from "../../Office"
+import { EarthFlowers } from "../../EarthFlowers"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -41,6 +45,7 @@ export const Experience = (props) => {
   const characterContainerAboutRef = useRef()
 
   const [characterAnimation, setCharacterAnimation] = useState("Typing")
+
   useEffect(() => {
     setCharacterAnimation("Falling")
     setTimeout(() => {
@@ -68,10 +73,8 @@ export const Experience = (props) => {
     characterContainerAboutRef.current.getWorldQuaternion(quaternion)
     const euler = new THREE.Euler()
     euler.setFromQuaternion(quaternion, "XYZ")
-    console.log([euler.x, euler.y, euler.z])
+    // console.log([euler.x, euler.y, euler.z])
   })
-
-  console.log("section: ", section)
 
   return (
     <>
@@ -115,8 +118,8 @@ export const Experience = (props) => {
           },
         }}
       >
-        {" "}
-        <Avatar animation={characterAnimation} />
+        {/* <Please animation={characterAnimation} /> */}
+        <AvatarDeprecated animation={characterAnimation} />
       </motion.group>
 
       <Sky />
@@ -137,7 +140,8 @@ export const Experience = (props) => {
           color='#000000'
         />
 
-        <ComputerDeskLarger scale={1} section={section} />
+        <Office section={section} />
+        {/* <Avatar animation={characterAnimation} /> */}
 
         <group
           ref={characterContainerAboutRef}
@@ -162,15 +166,9 @@ export const Experience = (props) => {
         }}
       >
         <directionalLight position={[-5, 3, 5]} intensity={0.4} />
-        {/* <Avatar
-          animation={section === 0 ? "Falling" : "Standing"}
-          position={[0.88, 0.076, -0.802]} // Match the chair's position
-          rotation={[-Math.PI / 2, Math.PI / 2, 1.643]}
-          scale={1.6}
-        /> */}
         <Float>
           <mesh position={[1, -3, -15]} scale={[2, 2, 2]}>
-            <sphereGeometry />
+            <EarthFlowers />
             <MeshDistortMaterial
               opacity={0.8}
               transparent
