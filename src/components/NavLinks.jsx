@@ -109,7 +109,7 @@ const AboutSection = (props) => {
       </motion.p>
       <div className='flex gap-5 px-8'>
         <motion.button
-          className='bg-black text-white py-4 px-6 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
+          className='bg-black text-white py-4 px-6 text-sm uppercase tracking-widest hover:bg-[#5F5853] transition-colors'
           initial={{
             opacity: 0,
             y: 25,
@@ -127,7 +127,7 @@ const AboutSection = (props) => {
           Contact
         </motion.button>
         <motion.button
-          className='bg-black text-white py-3 px-6 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
+          className='bg-black text-white py-3 px-6 text-sm uppercase tracking-widest hover:bg-[#5F5853] transition-colors'
           initial={{
             opacity: 0,
             y: 25,
@@ -257,7 +257,7 @@ const ContactSection = () => {
             </label>
           </div>
 
-          <button className='w-full bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'>
+          <button className='w-full bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-[#5F5853] transition-colors'>
             Send Message
           </button>
         </form>

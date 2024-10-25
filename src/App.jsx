@@ -7,7 +7,6 @@ import { useState, useEffect } from "react"
 import { Menu } from "./components/Menu.jsx"
 import { MotionConfig } from "framer-motion"
 import { framerMotionConfig } from "./framerConfig.js"
-import { Cursor } from "./components/Cursor.jsx"
 
 function App() {
   const [section, setSection] = useState(0)
@@ -42,7 +41,6 @@ function App() {
           menuOpened={menuOpened}
           setMenuOpened={setMenuOpened}
         />
-        <Cursor />
       </MotionConfig>
     </>
   )

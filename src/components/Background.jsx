@@ -20,7 +20,7 @@ export const Background = () => {
   useEffect(() => {
     tl.current = gsap.timeline()
     tl.current.to(color.current, {
-      color: "#5F5853",
+      color: "#5F524C",
     })
     tl.current.to(color.current, {
       color: "#aa9d94",
