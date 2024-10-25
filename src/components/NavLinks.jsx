@@ -43,7 +43,7 @@ const AboutSection = (props) => {
   const { setSection } = props
   return (
     <Section>
-      <div className='bg-black text-white p-8'>
+      <div className='p-8'>
         <style jsx='true'>{`
           @keyframes slideIn {
             0% {
@@ -75,19 +75,22 @@ const AboutSection = (props) => {
         `}</style>
 
         <h1
-          className='text-6xl font-light tracking-wide'
-          style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
+          className='text-6xl text-bold tracking-wide'
+          style={{
+            fontFamily: 'Didot, "Times New Roman", serif',
+            textTransform: "uppercase",
+          }}
         >
-          Hello, my name is
+          Hello, I'm
           <br />
           <div className='flex items-center'>
             <span className='pushing-text whitespace-nowrap'>Angelynn</span>
-            <div className='sliding-line h-0.5 bg-white ml-2 flex-grow'></div>
+            <span className='sliding-line'>.</span>
           </div>
         </h1>
       </div>
       <motion.p
-        className='text-lg text-gray-600 my-4'
+        className='text-lg text-gray-600 my-4 px-8'
         initial={{
           opacity: 0,
           y: 25,
@@ -101,28 +104,47 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        I'm a fullstack software developer with a passion for crafting intuitive
-        and impactful user experiences.
+        A fullstack software developer with a passion for crafting intuitive and
+        impactful user experiences.
       </motion.p>
-      <motion.button
-        className='w-1/6 bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
-        initial={{
-          opacity: 0,
-          y: 25,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 2,
-        }}
-        onClick={() => setSection(3)}
-      >
-        {" "}
-        Let's Connect
-      </motion.button>
+      <div className='flex gap-5 px-8'>
+        <motion.button
+          className='bg-black text-white py-4 px-6 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 2,
+          }}
+          onClick={() => setSection(3)}
+        >
+          Contact
+        </motion.button>
+        <motion.button
+          className='bg-black text-white py-3 px-6 text-sm uppercase tracking-widest hover:bg-gray-900 transition-colors'
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 2,
+          }}
+          onClick={() => setSection(3)}
+        >
+          Projects
+        </motion.button>
+      </div>
     </Section>
   )
 }
@@ -180,10 +202,10 @@ const ContactSection = () => {
     <Section>
       <div className='w-1/3 mx-10 px-4'>
         <h2
-          className='text-6xl font-light tracking-tight mb-14'
+          className='text-6xl text-bold tracking-tight mb-14'
           style={{ fontFamily: 'Didot, "Times New Roman", serif' }}
         >
-          Contact
+          Let's Connect
         </h2>
 
         <form className='space-y-12 w-full'>
