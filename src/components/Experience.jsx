@@ -22,6 +22,8 @@ import { Avatar } from "./Avatar"
 import { Please } from "./Please"
 import { Office } from "../../Office"
 import { EarthFlowers } from "../../EarthFlowers"
+import { Flowers } from "../../Flowers"
+import { FlowerEarth } from "../../FlowerEarth"
 
 export const Experience = (props) => {
   const { menuOpened } = props
@@ -180,7 +182,7 @@ export const Experience = (props) => {
         </Float>
         <Float>
           <mesh scale={[3, 3, 3]} position={[3, 1, -18]}>
-            <sphereGeometry />
+            <FlowerEarth />
             <MeshDistortMaterial
               opacity={0.8}
               transparent
@@ -192,7 +194,7 @@ export const Experience = (props) => {
         </Float>
         <Float>
           <mesh scale={[1.4, 1.4, 1.4]} position={[-3, -1, -11]}>
-            <boxGeometry />
+            <Flowers />
             <MeshWobbleMaterial
               opacity={0.8}
               transparent
